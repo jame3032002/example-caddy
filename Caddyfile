@@ -1,0 +1,4 @@
+{$KAJAME_URL} {
+  reverse_proxy website:3000
+  tls /etc/ssl/kajame.com.crt /etc/ssl/kajame.com.key
+}

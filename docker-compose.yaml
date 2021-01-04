@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  website:
+    ports:
+      - 3000:3000
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    volumes:
+      - ./website:/app
+      - /node_modules
+      - /.next
+
+  https:
+    image: caddy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./ssl:/etc/ssl
+    environment:
+      - KAJAME_URL=https://kajame.com
